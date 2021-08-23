@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Elias Silva de Sousa
+- Camila Goulart Soares
+- Thayane Pita Silva Bitencourt
 
 Link do Surge: www.link.com.br
 
