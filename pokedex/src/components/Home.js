@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { useHistory } from "react-router-dom"
+import { useEffect } from "react"
+import axios from 'axios'
 
 
 document.body.style = "background: #F5F5F5"
@@ -22,18 +24,16 @@ h2{
 }
 `
 const CardPokemons = styled.div`
-display: flex; 
-flex-direction: row;
-align-items: center;
-justify-content: center;
-
+/* display: flex; 
+flex-direction: row; */
+/* align-items: center;
+justify-content: center; */
 div{
     background-color: white;
     height: 270px;
     width: 250px;
-    margin: 10px;
     box-shadow: 0px 0px 4px #BAB9C7;
-}` 
+}`
 
 export const ContainerButton = styled.div`
 
@@ -52,42 +52,60 @@ button{
 }
 `
 
-export const Home = () =>{
+export const Home = () => {
 
-const history = useHistory()
+    const [pokemon, setPokemon] = useState([])
 
-const irParaPokedex = () => {
-    history.push("/Pokedex")
-}
+    const mostrarListaPokemon = () => {
+        const url = "https://pokeapi.co/api/v2/pokemon/"
+        axios.get(url)
+            .then((res) => {
+                // console.log("FOI",res.data.results)
+                setPokemon(res.data.results)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
-const irParaDetalhes = () => {
-    history.push("/Detalhes")
-}
-    return(
+    useEffect(() => {
+        mostrarListaPokemon()
+    }, [])
+
+
+    const history = useHistory()
+
+    const irParaPokedex = () => {
+        history.push("/Pokedex")
+    }
+
+    const irParaDetalhes = () => {
+        history.push("/Detalhes")
+    }
+
+    const todosPokemons = pokemon.map((poke) => {
+        return (
+            <CardPokemons>
+                <p><b>Nome: </b>{poke.name}</p>
+            </CardPokemons>
+        )
+    })
+
+    return (
         <div>
-        <Header>
-            <h2>Lista de Pokémons</h2>
-        </Header>
-           <ContainerButton>
-            <button onClick={irParaPokedex}>Ir para Pokedex</button>
-            <button>Adicionar a Pokedex</button>
-            <button onClick={irParaDetalhes}>Ver detalhes</button>
-          </ContainerButton>
-      
-        <CardPokemons>
-            <div>Pokemon 1
-            </div>
-        </CardPokemons>
+            <Header>
+                <h2>Lista de Pokémons</h2>
+            </Header>
+            <ContainerButton>
+                <button onClick={irParaPokedex}>Ir para Pokedex</button>
+                <button>Adicionar a Pokedex</button>
+                <button onClick={irParaDetalhes}>Ver detalhes</button>
+            </ContainerButton>
 
-      <CardPokemons>
-          <div>Pokemon 2
-          </div>
-        </CardPokemons>
+            <CardPokemons>
+                <div>{todosPokemons}</div>
+            </CardPokemons>
 
-      <CardPokemons>
-          <div>Pokemon 3
-          </div>
-     </CardPokemons>
-            </div>
+        </div>
     )
 }
