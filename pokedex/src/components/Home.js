@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom"
 import { useEffect } from "react"
 import axios from 'axios'
 
-
 document.body.style = "background: #F5F5F5"
+
 
 export const Header = styled.div`
 
@@ -24,19 +24,37 @@ h2{
 }
 `
 const CardPokemons = styled.div`
-/* display: flex; 
-flex-direction: row; */
-/* align-items: center;
-justify-content: center; */
-div{
-    background-color: white;
-    height: 270px;
-    width: 250px;
-    box-shadow: 0px 0px 4px #BAB9C7;
-}`
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 16px;
+   background-color: white;
+   width: 360px;
+   height: 210px;
+   box-shadow: 1px 0px 4px #BAB9C7;
+`
 
 export const ContainerButton = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+width: 240px;
+margin-top: 140px;
+button{
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 2px solid #3A5EA9;
+    margin: 13px;
+    width: 160px;
+    height: 50px;
+:hover{
+    background-color: #3A5EA9;
+}
+}
+`
 
+export const ContainerButtonHeader = styled.div`
 
 button{
     background-color: white;
@@ -55,6 +73,8 @@ button{
 export const Home = () => {
 
     const [pokemon, setPokemon] = useState([])
+    // const [fotoPokemon,setFotoPokemon ] = useState([])
+
 
     const mostrarListaPokemon = () => {
         const url = "https://pokeapi.co/api/v2/pokemon/"
@@ -73,6 +93,29 @@ export const Home = () => {
     }, [])
 
 
+//    //integraçao API para mostrar foto
+    // const mostrarFotoPokemon = (passaNome) => {
+        
+    
+    //     const url = `https://pokeapi.co/api/v2/pokemon/${passaNome}`
+    //     axios.get(url)
+    //         .then((res) => {
+    //             // setFotoPokemon(res.data.sprites)
+    //              console.log("teste",res.data.sprites)
+    //             setFotoPokemon(res.data.sprites)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+            
+
+    // }
+
+    // useEffect(() => {
+    //     mostrarFotoPokemon()
+    // },[])
+
+    //
     const history = useHistory()
 
     const irParaPokedex = () => {
@@ -83,29 +126,55 @@ export const Home = () => {
         history.push("/Detalhes")
     }
 
+
+    // const passaNome =(passaNome)=>{
+    //     console.log("o nome que está sendo recebido é",passaNome)
+    //     mostrarFotoPokemon(passaNome)
+    // }
+
     const todosPokemons = pokemon.map((poke) => {
         return (
-            <CardPokemons>
-                <p><b>Nome: </b>{poke.name}</p>
-            </CardPokemons>
+            <CardPokemons key={poke.name} passaNome={poke.name}>
+            <p><b>Nome: </b>{poke.name} </p> 
+             {/* <img src={poke.sprites.front_default} />  */}
+             <ContainerButton>
+            <button>Adicionar a Pokedex</button>
+            <button onClick={irParaDetalhes}>Ver detalhes</button>  
+            </ContainerButton>  
+               </CardPokemons>
         )
     })
+
+
+
+    //  map das fotos do pokemon
+    // const imagem = fotoPokemon.map((foto) => {
+    //     return (
+    //         <div >
+    //             <img src={foto.sprites.front_shiny}/>
+
+    //             </div>
+    //     )
+    // })
+
 
     return (
         <div>
             <Header>
                 <h2>Lista de Pokémons</h2>
+
             </Header>
-            <ContainerButton>
-                <button onClick={irParaPokedex}>Ir para Pokedex</button>
-                <button>Adicionar a Pokedex</button>
-                <button onClick={irParaDetalhes}>Ver detalhes</button>
-            </ContainerButton>
+            <ContainerButtonHeader>
+            <button onClick={irParaPokedex}>Ir para Pokedex</button>
+              
+            </ContainerButtonHeader>
 
             <CardPokemons>
-                <div>{todosPokemons}</div>
+            
+           {todosPokemons}
+           
+                
             </CardPokemons>
-
-        </div>
+     </div>
     )
 }

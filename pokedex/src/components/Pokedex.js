@@ -1,7 +1,7 @@
 import React from "react"
 import { Header } from "./Home"
 import { useHistory } from "react-router-dom"
-import { ContainerButton } from "./Home"
+import { ContainerButtonHeader } from "./Home"
 
 const Pokedex = () => {
 
@@ -17,9 +17,9 @@ const Pokedex = () => {
                 <h2>Pokédex</h2>
             </Header>
             
-            <ContainerButton>
+            <ContainerButtonHeader>
                     <button onClick={irParaInicio}>Voltar para lista de pokemons</button>
-            </ContainerButton>
+            </ContainerButtonHeader>
                 </div>
     )
 }
