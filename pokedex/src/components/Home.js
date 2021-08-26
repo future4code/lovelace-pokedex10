@@ -73,14 +73,14 @@ button{
 export const Home = () => {
 
     const [pokemon, setPokemon] = useState([])
-    // const [fotoPokemon,setFotoPokemon ] = useState([])
+     const [fotoPokemon,setFotoPokemon ] = useState([])
 
 
     const mostrarListaPokemon = () => {
         const url = "https://pokeapi.co/api/v2/pokemon/"
         axios.get(url)
             .then((res) => {
-                // console.log("FOI",res.data.results)
+                 console.log("FOI",res.data.results)
                 setPokemon(res.data.results)
             })
             .catch((err) => {
@@ -94,26 +94,28 @@ export const Home = () => {
 
 
 //    //integraçao API para mostrar foto
-    // const mostrarFotoPokemon = (passaNome) => {
+    const mostrarFotoPokemon = (passaNome) => {
         
     
-    //     const url = `https://pokeapi.co/api/v2/pokemon/${passaNome}`
-    //     axios.get(url)
-    //         .then((res) => {
-    //             // setFotoPokemon(res.data.sprites)
-    //              console.log("teste",res.data.sprites)
-    //             setFotoPokemon(res.data.sprites)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
+        const url = `https://pokeapi.co/api/v2/pokemon/${passaNome}`
+        axios.get(url)
+            .then((res) => {
+                 console.log("passando as imagens",res.data.sprites)
+
+                 const fotos = []
+                 fotos.push(res.data.sprites.front_default)
+                //setFotoPokemon(fotos)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
             
 
-    // }
+    }
 
-    // useEffect(() => {
-    //     mostrarFotoPokemon()
-    // },[])
+    useEffect(() => {
+        mostrarFotoPokemon()
+    },[])
 
     //
     const history = useHistory()
@@ -127,16 +129,15 @@ export const Home = () => {
     }
 
 
-    // const passaNome =(passaNome)=>{
-    //     console.log("o nome que está sendo recebido é",passaNome)
-    //     mostrarFotoPokemon(passaNome)
-    // }
+    const passaNome =(passaNome)=>{
+        console.log("o nome que está sendo recebido é",passaNome)
+        mostrarFotoPokemon(passaNome)
+    }
 
     const todosPokemons = pokemon.map((poke) => {
         return (
-            <CardPokemons key={poke.name} passaNome={poke.name}>
-            <p><b>Nome: </b>{poke.name} </p> 
-             {/* <img src={poke.sprites.front_default} />  */}
+            <CardPokemons key={poke.name} >
+            <p><b>Nome: </b>{poke.name} {passaNome(poke.name)} </p> 
              <ContainerButton>
             <button>Adicionar a Pokedex</button>
             <button onClick={irParaDetalhes}>Ver detalhes</button>  
@@ -147,7 +148,7 @@ export const Home = () => {
 
 
 
-    //  map das fotos do pokemon
+     //map das fotos do pokemon
     // const imagem = fotoPokemon.map((foto) => {
     //     return (
     //         <div >
@@ -172,6 +173,8 @@ export const Home = () => {
             <CardPokemons>
             
            {todosPokemons}
+           
+           <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png"/>
            
                 
             </CardPokemons>
