@@ -109,8 +109,9 @@ export const Home = () => {
     const todosPokemons = pokemon.map((poke) => {
         return (
             <CardPokemons key={poke.name} >
+                
             <p><b>Nome: </b>{poke.name} {passaNome(poke.name)}
-            <p></p>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/shiny/4.png" />
              </p> 
              <ContainerButton>
             <button>Adicionar a Pokedex</button>
@@ -124,7 +125,7 @@ export const Home = () => {
         return (
             <CardPokemons >
                 <p>Foto</p>
-                <img src={foto.sprites.front_default}/>
+                
                 </CardPokemons>
         )
     })
