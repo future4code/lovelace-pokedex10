@@ -142,8 +142,13 @@ export const Home = () => {
     const todosPokemons = pokemon.map((poke) => {
         return (
             <CardPokemons key={poke.name} >
+                
             <p><b>Nome: </b>{poke.name} {passaNome(poke.name)}
+
                  </p> 
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/shiny/4.png" />
+             </p> 
+
              <ContainerButton>
             <button>Adicionar a Pokedex</button>
             <button onClick={irParaDetalhes}>Ver detalhes</button>  
@@ -151,7 +156,19 @@ export const Home = () => {
                </CardPokemons>
         )
     })
+
  
+
+     //map das fotos do pokemon
+    const imagem = fotoPokemon && fotoPokemon.sprites && fotoPokemon.map((foto) => {
+        return (
+            <CardPokemons >
+                <p>Foto</p>
+                
+                </CardPokemons>
+        )
+    })
+
     return (
         <div>
             <GlobalStyle />
