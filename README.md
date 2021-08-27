@@ -8,8 +8,9 @@ Nome dos integrantes:
 Link do Surge: www.link.com.br
 
 O que funciona:
-- Item 1
-- Item 2
+- As mudanças de páginas funcionam atráves das rotas
+- A lista de nomes dos pokemons
+- Estilizações
 
 O que não funciona: 
 - Item 3
