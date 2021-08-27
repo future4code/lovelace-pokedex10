@@ -2,6 +2,7 @@ import React from "react"
 import { Header } from "./Home"
 import { useHistory } from "react-router-dom"
 import { ContainerButtonHeader } from "./Home"
+import logo from "../img/logo.png"
 
 const Pokedex = () => {
 
@@ -14,7 +15,7 @@ const Pokedex = () => {
     return (
         <div>
             <Header>
-                <h2>Pokédex</h2>
+                <img src={logo} />
             </Header>
             
             <ContainerButtonHeader>

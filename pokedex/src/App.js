@@ -3,6 +3,8 @@ import { Home } from "./components/Home"
 import Pokedex from "./components/Pokedex"
 import { Detalhes } from "./components/Detalhes"
 import { Switch, Route, BrowserRouter } from "react-router-dom"
+import { GlobalStyle } from "./components/styles/global"
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,6 +21,7 @@ const App = () => {
           <Detalhes />
         </Route>
       </Switch>
+      <GlobalStyle />
     </BrowserRouter>
   )
 }

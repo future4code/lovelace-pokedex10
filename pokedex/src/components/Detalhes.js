@@ -3,6 +3,7 @@ import { Header } from "./Home"
 import { useHistory } from "react-router-dom"
 import { ContainerButtonHeader } from "./Home"
 import styled from "styled-components"
+import logo from "../img/logo.png"
 
 const CardDetalhesLateral = styled.div`
 display: grid;
@@ -13,7 +14,9 @@ div {
    background-color: white;
    width: 230px;
    height: 200px;
-   box-shadow: 1px 0px 4px #BAB9C7;} `
+   border-radius: 10px;
+   box-shadow: 2px 2px 1px #A7A6B3;
+   } `
 
 export const Detalhes = () => {
 
@@ -29,7 +32,7 @@ export const Detalhes = () => {
     return (
         <div>
             <Header>
-                <h2>Detalhes</h2>
+                <img src={logo} />
             </Header>
             <ContainerButtonHeader>
                 <button onClick={irParaInicio}>Voltar</button>
