@@ -1,0 +1,27 @@
+{
+	"info": {
+		"_postman_id": "0235b93f-e741-47d8-8fb3-afdaff0baab1",
+		"name": "PokeDex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhes Pokemon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
